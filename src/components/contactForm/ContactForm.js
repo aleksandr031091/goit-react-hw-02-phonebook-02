@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 
+const contact = { name: "", number: "" };
+
 class ContactForm extends Component {
-  state = { name: "", number: "" };
+  state = { ...contact };
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    // console.log(this.props);
+    this.props.addNewContact({ ...this.state });
+    this.setState({ ...contact });
   };
 
   onHandleChange = (e) => {

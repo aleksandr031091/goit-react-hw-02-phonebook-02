@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ContactForm from "./contactForm/ContactForm";
 import ContactList from "./contactList/ContactList";
+import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
   state = {
@@ -13,10 +14,22 @@ class App extends Component {
     filter: "",
   };
 
+  addNewContact = ({ name, number }) => {
+    const contact = {
+      id: uuidv4(),
+      name,
+      number,
+    };
+
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, contact],
+    }));
+  };
+
   render() {
     return (
       <>
-        <ContactForm />
+        <ContactForm addNewContact={this.addNewContact} />
 
         <ContactList contacts={this.state.contacts} />
       </>
