@@ -7,8 +7,8 @@ class ContactForm extends Component {
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
-    // console.log(this.props);
+    console.log(this.state);
+    console.log(this.props);
     this.props.addNewContact({ ...this.state });
     this.setState({ ...contact });
   };

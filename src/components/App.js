@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ContactForm from "./contactForm/ContactForm";
 import ContactList from "./contactList/ContactList";
 import { v4 as uuidv4 } from "uuid";
+import Filter from "./filter/Filter";
 
 class App extends Component {
   state = {
@@ -21,17 +22,44 @@ class App extends Component {
       number,
     };
 
+    if (
+      this.state.contacts.find(
+        (contact) => contact.name.toUpperCase() === name.toUpperCase()
+      )
+    ) {
+      alert(`${name}is already in contacts`);
+    }
+
     this.setState(({ contacts }) => ({
       contacts: [...contacts, contact],
     }));
   };
 
+  filterContacts = () => {
+    const { contacts, filter } = this.state;
+    // console.log(contacts, filter);
+
+    return contacts.filter((contact) =>
+      contact.name.toUpperCase().includes(filter.toUpperCase())
+    );
+  };
+
+  onChangeFilter = (filter) => {
+    this.setState({ filter });
+  };
+
   render() {
+    // console.log(this.filterContacts());
+    // console.log(this.state.contacts);
     return (
       <>
+        <h1>Phonebook</h1>
         <ContactForm addNewContact={this.addNewContact} />
 
-        <ContactList contacts={this.state.contacts} />
+        <h2>Contacts</h2>
+        <Filter value={this.state.filter} onChange={this.onChangeFilter} />
+
+        <ContactList contacts={this.filterContacts()} />
       </>
     );
   }
