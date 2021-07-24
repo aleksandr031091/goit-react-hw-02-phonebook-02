@@ -1,11 +1,17 @@
 import React from "react";
 import ContactListItem from "../contactListItem/ContactListItem";
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, removeContact }) => {
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
-        <ContactListItem key={id} name={name} number={number} />
+        <ContactListItem
+          key={id}
+          id={id}
+          name={name}
+          number={number}
+          removeItem={removeContact}
+        />
       ))}
     </ul>
   );

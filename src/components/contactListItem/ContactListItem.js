@@ -1,11 +1,15 @@
 import React from "react";
 
-const ContactListItem = ({ name, number }) => {
+const ContactListItem = ({ name, number, removeItem, id }) => {
+  const onHandleClick = () => {
+    removeItem(id);
+  };
+
   return (
     <li>
       <p>{name}</p>
       <p>{number}</p>
-      <button>Delete</button>
+      <button onClick={onHandleClick}>Delete</button>
     </li>
   );
 };

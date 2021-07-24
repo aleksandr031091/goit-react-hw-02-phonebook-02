@@ -36,16 +36,22 @@ class App extends Component {
   };
 
   filterContacts = () => {
-    const { contacts, filter } = this.state;
+    // const { contacts, filter } = this.state;
     // console.log(contacts, filter);
 
-    return contacts.filter((contact) =>
-      contact.name.toUpperCase().includes(filter.toUpperCase())
+    return this.state.contacts.filter((contact) =>
+      contact.name.toUpperCase().includes(this.state.filter.toUpperCase())
     );
   };
 
   onChangeFilter = (filter) => {
     this.setState({ filter });
+  };
+
+  removeContact = (id) => {
+    this.setState((prev) => ({
+      contacts: prev.contacts.filter((contact) => contact.id !== id),
+    }));
   };
 
   render() {
@@ -59,7 +65,10 @@ class App extends Component {
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.onChangeFilter} />
 
-        <ContactList contacts={this.filterContacts()} />
+        <ContactList
+          contacts={this.filterContacts()}
+          removeContact={this.removeContact}
+        />
       </>
     );
   }
