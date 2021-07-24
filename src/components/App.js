@@ -36,9 +36,6 @@ class App extends Component {
   };
 
   filterContacts = () => {
-    // const { contacts, filter } = this.state;
-    // console.log(contacts, filter);
-
     return this.state.contacts.filter((contact) =>
       contact.name.toUpperCase().includes(this.state.filter.toUpperCase())
     );
@@ -55,8 +52,6 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.filterContacts());
-    // console.log(this.state.contacts);
     return (
       <>
         <h1>Phonebook</h1>
