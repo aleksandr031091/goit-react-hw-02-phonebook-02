@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import css from "./ContactForm.module.css";
 
 const contact = { name: "", number: "" };
@@ -60,6 +60,6 @@ class ContactForm extends Component {
 
 export default ContactForm;
 
-// ContactForm.prototype = {
-//   addNewContact: PropTypes.func.isRequired,
-// };
+ContactForm.propTypes = {
+  addNewContact: PropTypes.func.isRequired,
+};
